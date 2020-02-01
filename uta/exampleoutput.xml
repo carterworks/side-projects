@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Siri version="1.3"
+	xmlns="http://www.siri.org.uk/siri">
+	<ResponseTimestamp>2019-08-03T09:14:46.1710289-06:00</ResponseTimestamp>
+	<StopMonitoringDelivery version="1.3">
+		<ResponseTimestamp>2019-08-03T09:14:46.1710289-06:00</ResponseTimestamp>
+		<ValidUntil>2019-08-03T09:14:56.1710289-06:00</ValidUntil>
+		<MonitoredStopVisit>
+			<RecordedAtTime>2019-08-03T09:14:46.1710289-06:00</RecordedAtTime>
+			<MonitoredVehicleJourney>
+				<LineRef>834</LineRef>
+				<DirectionRef>SB TO PROVO STN</DirectionRef>
+				<FramedVehicleJourneyRef>
+					<DataFrameRef>2019-08-03T00:00:00-06:00</DataFrameRef>
+					<DatedVehicleJourneyRef>3846638</DatedVehicleJourneyRef>
+				</FramedVehicleJourneyRef>
+				<PublishedLineName>RIVERWOODS/ PROVO CENTRAL STATION</PublishedLineName>
+				<OriginRef>812003</OriginRef>
+				<DestinationRef>801275</DestinationRef>
+				<Monitored>True</Monitored>
+				<VehicleLocation>
+					<Longitude>-111.67847</Longitude>
+					<Latitude>40.2969</Latitude>
+				</VehicleLocation>
+				<ProgressRate>1</ProgressRate>
+				<CourseOfJourneyRef>5499</CourseOfJourneyRef>
+				<VehicleRef>07034</VehicleRef>
+				<MonitoredCall>
+					<StopPointRef>817085</StopPointRef>
+					<VisitNumber>1</VisitNumber>
+					<VehicleAtStop>false</VehicleAtStop>
+					<Extensions>
+						<EstimatedDepartureTime>193</EstimatedDepartureTime>
+						<Direction>Provo Central Station</Direction>
+						<Distance>38845570.170990519</Distance>
+					</Extensions>
+				</MonitoredCall>
+				<Extensions>
+					<LastGPSFix>2019-08-03T09:14:36.457</LastGPSFix>
+					<Scheduled>False</Scheduled>
+					<Bearing>91.2</Bearing>
+					<Speed>36.8256</Speed>
+					<DestinationName>Provo Central Station</DestinationName>
+				</Extensions>
+			</MonitoredVehicleJourney>
+		</MonitoredStopVisit>
+		<Extensions>
+			<StopName>300 W @ 5132 N</StopName>
+			<StopLongitude>-111.662713000</StopLongitude>
+			<StopLatitude>40.302761000</StopLatitude>
+			<StopLocation>Utah</StopLocation>
+		</Extensions>
+	</StopMonitoringDelivery>
+</Siri>

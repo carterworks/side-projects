@@ -1,0 +1,121 @@
+:root {
+  font-size: 1.4rem;
+}
+
+.absolute-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  box-sizing: border-box;
+  background: rgb(14, 0, 255);
+  background: linear-gradient(
+    137deg,
+    rgba(14, 0, 255, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  flex-direction: column;
+  height: 100vh;
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  font-weight: lighter;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  width: 300px;
+  height: 2.4em;
+}
+
+li + li {
+  margin-top: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  height: 100%;
+  width: 100%;
+  border: 4px solid;
+  border-color: #ffffff;
+  border-radius: 8px;
+  font-weight: bold;
+
+  background-position: center;
+  transition: background 0.25s, border 0.25s, color 0.25s;
+}
+a:hover {
+  color: #076aff;
+}
+a.deluge:hover {
+  background: #304663 radial-gradient(circle, transparent 1%, #304663 1%)
+    center/15000%;
+  border-color: #304663;
+}
+a.deluge:active {
+  background-color: #3b577c;
+  background-size: 100%;
+  transition: background 0s;
+}
+a.jackett:hover {
+  background: #000000 radial-gradient(circle, transparent 1%, #000000 1%)
+    center/15000%;
+  border-color: #000000;
+}
+a.jackett:active {
+  background-color: #444444;
+  background-size: 100%;
+  transition: background 0s;
+}
+a.pihole:hover {
+  background: #ff0000 radial-gradient(circle, transparent 1%, #ff0000 1%)
+    center/15000%;
+  border-color: #ff0000;
+}
+a.pihole:active {
+  background-color: #7f0000;
+  background-size: 100%;
+  transition: background 0s;
+}
+a.plex:hover {
+  background: #e5a00d radial-gradient(circle, transparent 1%, #e5a00d 1%)
+    center/15000%;
+  border-color: #e5a00d;
+}
+a.plex:active {
+  background-color: #8b6209;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+a.sonarr:hover {
+  background: #36c6f4 radial-gradient(circle, transparent 1%, #36c6f4 1%)
+    center/15000%;
+  border-color: #36c6f4;
+}
+a.sonarr:active {
+  background-color: #36a8ce;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+a.radarr:hover {
+  background: #ffc230 radial-gradient(circle, transparent 1%, #ffc230 1%)
+    center/15000%;
+  border-color: #ffc230;
+}
+a.radarr:active {
+  background-color: #a0791f;
+  background-size: 100%;
+  transition: background 0s;
+}

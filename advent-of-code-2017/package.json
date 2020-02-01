@@ -1,0 +1,16 @@
+{
+  "name": "advent-of-code-2017",
+  "version": "1.1.0",
+  "description": "Carter McBride's journey through the Advent of Code 2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "test-watch": "mocha --watch ./test . --reporter min"
+  },
+  "author": "Carter McBride <mcbride@outlook.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}

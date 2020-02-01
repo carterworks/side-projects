@@ -1,0 +1,99 @@
+version: "3.7"
+services:
+  # =========================================
+  # Deluge+OpenVPN+Privoxy
+  # Torrent daemon with a vpn client and a
+  # for access to indexers proxy
+  # Deluge Web UI: 127.0.0.1:8112
+  # Privoxy UI: 127.0.0.1:8118
+  # =========================================
+  deluge-vpn:
+    cap_add:
+      - NET_ADMIN
+    container_name: deluge-vpn
+    environment:
+      - VPN_ENABLED=${DELUGE_VPN_ENABLE}
+      - VPN_USER=${DELUGE_VPN_USER}
+      - VPN_PASS=${DELUGE_VPN_PASS}
+      - VPN_PROV=${DELUGE_VPN_PROVIDER}
+      - STRICT_PORT_FORWARD=${DELUGE_STRICT_PORT_FORWARD}
+      - ENABLE_PRIVOXY=${DELUGE_ENABLE_PRIVOXY}
+      - LAN_NETWORK=192.168.0.0/24
+      - DEBUG=false
+      - NAME_SERVERS=209.222.18.222,37.235.1.174,1.1.1.1,8.8.8.8,209.222.18.218,37.235.1.177,1.0.0.1,8.8.4.4
+    env_file:
+      - ./.env
+    image: binhex/arch-delugevpn
+    ports:
+      - "8112:8112"
+      - "8118:8118"
+      - "58846:58846"
+      - "58946:58946"
+    restart: unless-stopped
+    volumes:
+      - "${DELUGE_CONFIG}:/config"
+      - "${DELUGE_DATA}:/data"
+  directory:
+    container_name: directory
+    image: abiosoft/caddy
+    ports:
+      - "2015:2015"
+    restart: unless-stopped
+    volumes:
+      - ".:/srv"
+  # =========================================
+  # Jackett
+  # RSS/TORZNAB Feed Creator
+  # UI: 127.0.0.1:9117
+  # =========================================
+  jackett:
+    container_name: jackett
+    env_file:
+      - ./.env
+    image: linuxserver/jackett
+    ports:
+      - "9117:9117"
+    restart: unless-stopped
+    volumes:
+      - "${JACKETT_CONFIG}:/config"
+      - "${JACKETT_DOWNLOADS}:/downloads"
+  # =========================================
+  # Sonarr
+  # Smart PVR for newsgroup and bittorrent users.
+  # UI: localhost:8989
+  # =========================================
+  sonarr:
+    container_name: sonarr
+    depends_on:
+      - deluge-vpn
+      - jackett
+    env_file:
+      - ./.env
+    image: linuxserver/sonarr
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+    volumes:
+      - "${SONARR_CONFIG}:/config"
+      - "${SONARR_COMPLETE}:/data/Complete"
+      - "${SONARR_TV}:/tv"
+  # =========================================
+  # Radarr
+  # A fork of Sonarr to work with movies à la Couchpotato.
+  # UI: localhost:7878
+  # =========================================
+  radarr:
+    container_name: radarr
+    depends_on:
+      - deluge-vpn
+      - jackett
+    env_file:
+      - ./.env
+    image: linuxserver/radarr
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+    volumes:
+      - "${RADARR_CONFIG}:/config"
+      - "${SONARR_COMPLETE}:/data/Complete"
+      - "${RADARR_MOVIES}:/movies"

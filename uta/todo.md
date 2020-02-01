@@ -1,0 +1,9 @@
+- [ ] Move the "stopMonitor" call from a function that is always called into a subcommand for uta
+- [ ] Make the type definitions better
+- [ ] Change the return type
+- [ ] Write better documentation for the functions
+- [ ] Organize into better files
+- [ ] write for the other 4 functions that uta provides
+- [ ] write config file (for preferred stops, etc.)
+- [ ] (Maybe) Caching of GTFS feed data for querying of route information and stops.
+- [ ] write as a more generalized client for SIRI endpoints

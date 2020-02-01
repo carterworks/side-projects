@@ -1,0 +1,72 @@
+# Sacrament Meeting Agenda
+## Provo Utah Married Student 32nd Ward
+## {{date}}
+
+### Greeting and Welcome
+
+- Presiding: {{presiding}}
+- Conducting: {{conducting}}
+- Visiting High Councilor: {{visitingHighCouncilor}}
+- Welcome any who are visiting or new to the ward
+- New member forms
+
+## Announcements
+
+## Opening Hymn: {{hymns.opening.number}} - *{{hymns.opening.title}}*
+
+- Chorister: {{chorister}}
+- Organist: {{organist}}
+
+## Opening Prayer: {{prayers.opening}}
+
+## Ward Business
+
+- Releasings
+- ____________________________________________
+- **Vote of thanks**
+- **Return key fobs**
+- Sustain - **Ask to stand as names are read; "It is proposed that we sustain..."**
+- ____________________________________________
+- **All those in favor, please manifest it by the uplifted hand; any opposed by the same sign.**
+- **Set apart - come to Bishop's office after the block.**
+- **If that doesn't work, come after Sacrament Meeting.**
+{{#if newMembers.length}}
+- Welcome new members - **Ask to stand as names are read**
+{{#each newMembers}}
+- {{this}}
+{{/each}}
+- **All those who can welcome these members into our ward, please show by the uplifted hand**
+{{/if}}
+
+## Stake Business?
+
+## Naming/Blessing Children?
+
+## Sacrament Hymn: {{hymns.sacrament.number}} - *{{hymns.sacrament.title}}*
+
+## **Adminstration of the Sacrament** by EQ
+
+## Speakers
+
+- {{speakers.[0]}}
+{{#if speakers.[2]}}
+- {{speakers.[1]}}
+
+## Intermediate Hymn: {{hymns.intermediate.number}} - *{{hymns.intermediate.title}}*
+
+- {{speakers.[2]}}
+
+{{else}}
+
+## Intermediate Hymn: {{hymns.intermediate.number}} - *{{hymns.intermediate.title}}*
+
+- {{speakers.[1]}}
+{{/if}}
+
+## Reminders
+
+- ____________________________________________
+
+## Closing Hymn: {{hymns.closing.number}} - *{{hymns.closing.title}}*
+
+## Closing Prayer {{prayers.closing}}
