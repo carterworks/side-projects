@@ -34,6 +34,7 @@
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
+    "immutable": "^4.0.0-rc.12",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
