@@ -17,7 +17,7 @@ let rec evenFibSum = (max_value, prev_num, prev_prev_num, even_sum) => {
   };
 };
 
-let rec fibSum = (max: int, )
+// let rec fibSum = (max: int, )
 
 let sum: int = evenFibSum(4000000, 0, 1, 0);
 
