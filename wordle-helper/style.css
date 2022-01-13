@@ -1,0 +1,60 @@
+:root {
+    --color-text: #1A1A1B;
+    --color-background: #FFFFFF;
+    --color-input-border: #D3D6DA;
+    --color-input-background: var(--color-background);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #D7DADC;
+        --color-background: #121213;
+        --color-input-border: #3A3A3C;
+        --color-input-background: #3a3a3c;
+    }
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--color-text);
+}
+
+input {
+    background-color: var(--color-input-background);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    border-color: var(--color-input-border);
+    color: var(--color-text);
+    max-width: 150px;
+    padding: 4px 8px;
+    width: 100%;
+}
+input:active, input:focus     {
+    border-color: var(--color-text);
+    color: var(--color-text);
+}
+
+button {
+    border: 0;
+    background-color: var(--color-input-border);
+    padding: 8px;
+    border-radius: 4px;
+    color: var(--color-text);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+@media (min-width: 450px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+}

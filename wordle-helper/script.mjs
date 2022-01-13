@@ -2353,7 +2353,7 @@ Alpine.data('byRegex', () => ({
             return [];
         }
         const regex = this.regex;
-        return wordList.filter(w => regex.test(w));
+        return wordList.filter(w => regex.test(w)).sort();
     }
 }))
 Alpine.data('byCheating',  () => ({

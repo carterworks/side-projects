@@ -6,25 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle Helper</title>
     <script type="module" src="/script.mjs" defer></script>
-    <style>
-        :root {
-            --color-present: #c9b458;
-            --color-correct: #6aaa64;
-            --color-absent: #787c7e;
-        }
-        .present {
-            color: #c9b458;
-            color: var(--color-present);
-        }
-        .correct {
-            color: #6aaa64;
-            color: var(--color-correct);
-        }
-        .absent {
-            color: #787c7e;
-            color: var(--color-absent);
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body>
     <header>
@@ -35,17 +21,26 @@
         <section x-data="byRegex">
             <h2>By Regex</h2>
             <p>
-                <label for="regexInput">Search regex ("." for wildcard):</label>
-                <input type="text" id="regexInput" x-model="regexInputStr" maxlength="5">
+                <div>
+                    <label for="regexInput">Search regex ("." for wildcard):</label>
+                </div>
+                <div>
+                    <input type="text" id="regexInput" x-model="regexInputStr" spellcheck="false" maxlength="5">
+                </div>
             </p>
             <p>
-                <label for="excludedLettersInput">Excluded letters:</label>
-                <input type="text" id="excludedLettersInput" x-model="excludedLettersInputStr">
+                <div>
+                    <label for="excludedLettersInput">Excluded letters:</label>
+                </div>
+                <div>
+                    <input type="text" id="excludedLettersInput" spellcheck="false" x-model="excludedLettersInputStr">
+                </div>
             </p>
             <div>
-                <span>Final search regex: <pre><code x-text="regex"></code></pre></span>
+                <span>Final search regex: <code x-text="regex"></code></span>
             </div>
-            <p>
+            <p x-show="potentialWords.length > 0">
+                <span>Results</span>
                 <ul>
                     <template x-for="word in potentialWords">
                         <li x-text="word"></li>
@@ -56,7 +51,7 @@
         <section x-data="byCheating">
             <h2>By cheating</h2>
             <div>
-                <button type="button" @click="show = !show">Toggle</button>
+                <button type="button" @click="show = !show">Toggle</button> 
                 <span x-show="show" x-text="wordOfTheDay"></span>
             </div>
         </section>
