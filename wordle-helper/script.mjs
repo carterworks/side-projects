@@ -2316,6 +2316,14 @@ const wordList = [
     "rural",
     "shave"
 ];
+// const wordList = [
+//     "abbey",
+//     "bbbey",
+//     "cbbey",
+//     "dbbey",
+//     "ebbey",
+//     "fbbey",
+// ]
 
 function getDateDifference(start, end) {
     const s = new Date(start)
@@ -2330,30 +2338,40 @@ function getWordOfTheDay() {
     return wordList[index]
 }
 
+const baseRegex = new RegExp('.{5}', 'gi');
 Alpine.data('byRegex', () => ({
-    regexInputStr: '',
+    knownLettersInputStr: '',
+    includedLettersInputStr: '',
     excludedLettersInputStr: '',
+    get includedLetters() {
+        return [...new Set(this.includedLettersInputStr.toLowerCase().split(''))]
+    },
     get excludedLetters() {
         return [...new Set(this.excludedLettersInputStr.toLowerCase().split(''))]
     },
-    get regex() {
-        if (!this.regexInputStr) {
-            return new RegExp('.{5}', 'gi');
+    get knownRegex() {
+        if (!this.knownLettersInputStr || this.knownLettersInputStr.length < 5) {
+            return baseRegex;
         }
-        let regexStr = this.regexInputStr;
-        if (this.excludedLettersInputStr) {
-            const newWildcard = `[^${this.excludedLetters.join('')}]`;
-            const oldWildcard = /\./gi;
-            regexStr = regexStr.replace(oldWildcard, newWildcard);
+        return new RegExp(this.knownLettersInputStr, "gi");
+    },
+    get excludeRegex() {
+        if (!this.excludedLettersInputStr) {
+            return baseRegex;
         }
-        return new RegExp(regexStr, 'gi');
+        return new RegExp(`[^${this.excludedLetters.join('')}]{5}`, 'gi');
     },
     get potentialWords() {
-        if (!this.regex || !this.regexInputStr) {
-            return [];
-        }
-        const regex = this.regex;
-        return wordList.filter(w => regex.test(w)).sort();
+        return wordList
+            .filter(w => this.knownRegex.test(w) && this.excludeRegex.test(w))
+            .filter(w => {
+                if (this.includedLetters.size === 0) {
+                    return true;
+                }
+                const letters = new Set(w.split(''))
+                return this.includedLetters.every(l => letters.has(l));
+            })
+            .sort();
     }
 }))
 Alpine.data('byCheating',  () => ({

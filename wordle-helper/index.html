@@ -22,10 +22,18 @@
             <h2>By Regex</h2>
             <p>
                 <div>
-                    <label for="regexInput">Search regex ("." for wildcard):</label>
+                    <label for="knownLettersInput">Green/known letters ("." for unknown/wildcard):</label>
                 </div>
                 <div>
-                    <input type="text" id="regexInput" x-model="regexInputStr" spellcheck="false" maxlength="5">
+                    <input type="text" id="knownLettersInput"  pattern="[A-Za-z\.]{5}" x-model="knownLettersInputStr" spellcheck="false" maxlength="5">
+                </div>
+            </p>
+            <p>
+                <div>
+                    <label for="includedLettersInput">Included letters:</label>
+                </div>
+                <div>
+                    <input type="text" id="includedLettersInput"  pattern="[A-Za-z\.]{0,5}" spellcheck="false" maxlength="5"  x-model="includedLettersInputStr">
                 </div>
             </p>
             <p>
@@ -33,13 +41,15 @@
                     <label for="excludedLettersInput">Excluded letters:</label>
                 </div>
                 <div>
-                    <input type="text" id="excludedLettersInput" spellcheck="false" x-model="excludedLettersInputStr">
+                    <input type="text" id="excludedLettersInput" pattern="[A-Za-z]*"  spellcheck="false" x-model="excludedLettersInputStr">
                 </div>
             </p>
-            <div>
-                <span>Final search regex: <code x-text="regex"></code></span>
-            </div>
-            <p x-show="potentialWords.length > 0">
+            <p>
+                <div>Known regex: <span x-text="knownRegex"></span></div>
+                <div>Include letters: <span x-text="includedLetters.sort()"></span></div>
+                <div>Exclude regex: <span x-text="excludeRegex"></span></div>
+            </p>
+            <p>
                 <span>Results</span>
                 <ul>
                     <template x-for="word in potentialWords">
