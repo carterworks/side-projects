@@ -1,5 +1,15 @@
 {
     "name": "Wordle Helper",
+    "short_name": "WH",
+    "start_url": "/",
+    "display": "browser",
+    "background_color": "#ffffff",
+    "description": "Helps you solve the daily puzzle for Josh Wardle and the NYT's Wordle",
+    "dir": "ltr",
+    "lang": "en",
+    "orientation": "any",
+    "scope": "/",
+    "theme_color": "#93c47d",
     "icons": [
         { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
         { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }

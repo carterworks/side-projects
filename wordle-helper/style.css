@@ -3,6 +3,7 @@
     --color-background: #FFFFFF;
     --color-input-border: #D3D6DA;
     --color-input-background: var(--color-background);
+    --color-theme: #93C47D;
 }
 @media (prefers-color-scheme: dark) {
     :root {
