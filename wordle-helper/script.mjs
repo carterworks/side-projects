@@ -2316,14 +2316,6 @@ const wordList = [
     "rural",
     "shave"
 ];
-// const wordList = [
-//     "abbey",
-//     "bbbey",
-//     "cbbey",
-//     "dbbey",
-//     "ebbey",
-//     "fbbey",
-// ]
 
 function getDateDifference(start, end) {
     const s = new Date(start)
@@ -2337,40 +2329,56 @@ function getWordOfTheDay() {
     const index = diff % wordList.length;
     return wordList[index]
 }
+function createCheckWord({
+    includedLetters, 
+    includeRegex,
+    knownLettersInputStr, 
+    knownRegex, 
+    excludedLetters, 
+    excludeRegex,
+}) {
+    return word => {
+        const passesKnownRegex = knownLettersInputStr.length === 5 ? knownRegex.test(word) : true;
+        const passesExcludeRegex = excludedLetters.length > 0 ? excludeRegex.test(word) : true;
+        const passesIncludeLetters = includedLetters.length > 0 ? includeRegex.test(word) : true;
+        return passesKnownRegex && passesExcludeRegex;
+    };
+}
+function createCheckIncludeLetters({includedLetters}) {
+    return word => {
+        if (includedLetters.size === 0) {
+            return true;
+        }
+        const letters = new Set(word.split(''))
+        return includedLetters.every(l => letters.has(l));
+    }
+}
 
-const baseRegex = new RegExp('.{5}', 'gi');
 Alpine.data('byRegex', () => ({
     knownLettersInputStr: '',
     includedLettersInputStr: '',
     excludedLettersInputStr: '',
     get includedLetters() {
-        return [...new Set(this.includedLettersInputStr.toLowerCase().split(''))]
+        return [...new Set(this.includedLettersInputStr.toLowerCase().split(''))].sort()
     },
     get excludedLetters() {
-        return [...new Set(this.excludedLettersInputStr.toLowerCase().split(''))]
+        return [...new Set(this.excludedLettersInputStr.toLowerCase().split(''))].sort()
     },
     get knownRegex() {
-        if (!this.knownLettersInputStr || this.knownLettersInputStr.length < 5) {
-            return baseRegex;
-        }
         return new RegExp(this.knownLettersInputStr, "gi");
     },
+    get includeRegex() {
+        return new RegExp(`[${this.includedLetters.join('')}]`, "gi");
+    },
     get excludeRegex() {
-        if (!this.excludedLettersInputStr) {
-            return baseRegex;
-        }
         return new RegExp(`[^${this.excludedLetters.join('')}]{5}`, 'gi');
     },
     get potentialWords() {
+        const checkWord = createCheckWord(this);
+        console.log(`CARTER - length after step one: ${wordList
+            .filter(checkWord).length}`);
         return wordList
-            .filter(w => this.knownRegex.test(w) && this.excludeRegex.test(w))
-            .filter(w => {
-                if (this.includedLetters.size === 0) {
-                    return true;
-                }
-                const letters = new Set(w.split(''))
-                return this.includedLetters.every(l => letters.has(l));
-            })
+            .filter(checkWord)
             .sort();
     }
 }))
