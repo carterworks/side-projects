@@ -2375,8 +2375,6 @@ Alpine.data('byRegex', () => ({
     },
     get potentialWords() {
         const checkWord = createCheckWord(this);
-        console.log(`CARTER - length after step one: ${wordList
-            .filter(checkWord).length}`);
         return wordList
             .filter(checkWord)
             .sort();
