@@ -1,6 +1,8 @@
 import numpy as np
 
 def generate_rolls(n):
+    """Generates n rolls of 2d6. Returns numpy matrix where one row is [dice_1, dice_2, sum_of_dice_1_and_dice_2]
+    """
     rolls = np.zeros((n, 3))
     rolls[:, 0:2] = np.random.randint(low=1, high=6, size=(n, 2))
     rolls[:, 2] = np.sum(rolls, axis=1).T
@@ -14,6 +16,10 @@ def trim_zeros(arr):
     return arr[slices]
 
 def sum_scores(rolls):
+    """Takes 2D list of rolls, where one row is [dice_1, dice_2, sum_of_dice_1_and_dice_2]
+    and applies the rules of the game, breaking down the rolls into rounds and scoring them.
+    Returns a 2D list of rounds, where one row is [number_of_rolls_in_round, round_max_score]
+    """
     round_num = 0
     rounds = np.zeros((rolls.shape[0], 2))
     rolls_in_round = 1
@@ -44,7 +50,14 @@ def sum_scores(rolls):
     return trim_zeros(rounds)
 
 def get_average_performance(rounds):
+    """Takes a 2D list of Returns a 2D list of rounds, where one row is 
+    [number_of_rolls_in_round, round_max_score]. Returns the average of each list column
+    as a 1d np list.
+    """
     return np.mean(rounds, axis=0)
 
 def run_simulation(n):
+    """Simulates an entire game of BANK! with n rolls. Returns the average of each list column
+    as a 1d np list. 
+    """
     return get_average_performance(sum_scores(generate_rolls(n)))
