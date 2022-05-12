@@ -4,7 +4,7 @@ Have you ever wanted to track the number of pushups you do in a week (that one i
 
 Quantibook is designed to keep track of “quantifiable events”. What does that mean? It’s something that happened that has an associated number. Inspired by the [“quantified self” movement](https://en.wikipedia.org/wiki/Quantified_self) and [Reddit’s /r/DataIsBeautiful community](https://www.reddit.com/r/DataIsBeautiful), Quantibook is a generic system for all of life’s little numbers.
 
-Is this just [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/) for humans (not machines)? Absolutely. If you want to use those, go ahead. Quantibook is aimed at a much smaller, more personal scale that is easier to set up.
+Is this just [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/) for humans? Absolutely. If you want to use those, go ahead. Quantibook is aimed at a much smaller, more personal scale that is easier to set up.
 
 ## Goals:
 
