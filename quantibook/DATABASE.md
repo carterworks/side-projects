@@ -1,6 +1,6 @@
 # Database Information
 
-Internally, Quantibook stores its data using [DuckDB](https://duckdb.org/), a SQLite-like database for column-oriented data. We want to be able to track not only individual events (rows), but to look at trends in those numbers. DuckDB is tuned for looking at lots of aggregate data, and that's what we want.
+Internally, Quantibook stores its data using [DuckDB](https://duckdb.org/), a SQLite-like database for column-oriented data. We want to be able to track not only individual events (rows), but to look at trends in those numbers. DuckDB is tuned for looking at lots of aggregate data, and that’s what we want.
 
 ## Schema
 
@@ -18,3 +18,4 @@ The `category` table:
 - `id`: a unique identifier. Required
 - `name`: a variable-length string representing the human-readible name of the category. Required.
 - TODO: Decide if categories can or should have a description.
+- TODO: Decide if categories should have a `type`. The main two types would be: those where the space in between events means somethings and those where it doesn’t. It's like deciding if a graph should have lines connecting the datapoints or not.
